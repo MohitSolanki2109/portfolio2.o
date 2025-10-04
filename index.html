@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohit Solanki - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== ROOT VARIABLES ===== */
+        :root {
+            --primary-color: #0a66c2;
+            --secondary-color: #00a0dc;
+            --dark-bg: #1a1a2e;
+            --card-bg: #ffffff;
+            --text-dark: #000000;
+            --text-light: #666666;
+            --text-white: #ffffff;
+            --accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== GLOBAL STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: #f5f7fa;
+            overflow-x: hidden;
+        }
+
+        /* ===== HEADER SECTION ===== */
+        .header {
+            background: var(--accent-gradient);
+            color: var(--text-white);
+            padding: 80px 20px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid var(--text-white);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            font-weight: bold;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            animation: fadeInDown 1s;
+        }
+
+        .header .headline {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            opacity: 0.95;
+            animation: fadeInUp 1s;
+        }
+
+        .header .location {
+            font-size: 1em;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .work-status {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px 25px;
+            border-radius: 30px;
+            margin-top: 15px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+
+        /* ===== ANALYTICS BAR ===== */
+        .analytics {
+            background: var(--card-bg);
+            box-shadow: var(--shadow);
+            border-radius: 15px;
+            padding: 30px;
+            margin: -50px auto 40px;
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.95em;
+            margin-top: 5px;
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* ===== SECTION CARDS ===== */
+        .section {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            transition: box-shadow 0.3s;
+        }
+
+        .section:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .section-title {
+            font-size: 2em;
+            margin-bottom: 25px;
+            color: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title i {
+            color: var(--primary-color);
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        /* ===== SKILLS SECTION ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow);
+        }
+
+        .skill-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .skill-card p {
+            color: var(--text-light);
+        }
+
+        /* ===== EDUCATION SECTION ===== */
+        .education-item {
+            padding: 25px;
+            border-left: 3px solid var(--secondary-color);
+            margin-bottom: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .education-item h3 {
+            color: var(--dark-bg);
+            font-size: 1.4em;
+            margin-bottom: 8px;
+        }
+
+        .education-item .degree {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .education-item .duration {
+            color: var(--text-light);
+            font-size: 0.95em;
+        }
+
+        /* ===== RECENT ACTIVITY SECTION ===== */
+        .activity-grid {
+            display: grid;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .activity-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--secondary-color);
+            transition: transform 0.3s;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .activity-card h3 {
+            color: var(--dark-bg);
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+
+        .activity-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .activity-type {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--text-white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-bottom: 10px;
+        }
+
+        /* ===== INTERESTS SECTION ===== */
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .interest-card {
+            background: var(--accent-gradient);
+            color: var(--text-white);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .interest-card:hover {
+            transform: scale(1.05);
+        }
+
+        .interest-card i {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .interest-card h3 {
+            font-size: 1.2em;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--dark-bg);
+            color: var(--text-white);
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-white);
+            font-size: 1.8em;
+            margin: 0 15px;
+            transition: color 0.3s, transform 0.3s;
+            display: inline-block;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .header .headline {
+                font-size: 1.1em;
+            }
+
+            .analytics {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .section {
+                padding: 25px;
+            }
+
+            .section-title {
+                font-size: 1.5em;
+            }
+
+            .skills-grid,
+            .interests-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== SCROLL TO TOP BUTTON ===== */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-color);
+            color: var(--text-white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 1000;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            background: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER SECTION -->
+    <header class="header">
+        <div class="header-content">
+            <div class="profile-img">MS</div>
+            <h1>Mohit Solanki</h1>
+            <p class="headline">Prompt Creator | AI-Powered Web Developer | Leveraging ChatGPT & Perplexity</p>
+            <p class="location"><i class="fas fa-map-marker-alt"></i> Junagadh City, Gujarat, India</p>
+            <div class="work-status">
+                <i class="fas fa-briefcase"></i> Open to Intern and Developer roles
+            </div>
+        </div>
+    </header>
+
+    <!-- ANALYTICS BAR -->
+    <div class="analytics">
+        <div class="stat-item">
+            <span class="stat-number">457</span>
+            <span class="stat-label">Connections</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">121</span>
+            <span class="stat-label">Profile Views (7 days)</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">567</span>
+            <span class="stat-label">Post Impressions (7 days)</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">12</span>
+            <span class="stat-label">Search Appearances</span>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        <!-- ABOUT SECTION -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-user"></i> About Me</h2>
+            <div class="about-text">
+                <p>I'm Mohit Solanki — a Prompt Creator and AI Innovator passionate about transforming ideas into intelligent, user-ready solutions. With expertise in Prompt Design and Generative AI Tools like ChatGPT and Perplexity, I craft seamless digital experiences that blend cutting-edge AI with practical web development.</p>
+                <br>
+                <p>My approach combines creative problem-solving with technical precision, enabling me to build responsive, dynamic web applications that prioritize user experience and functionality. Whether it's designing intelligent prompts or developing front-end solutions, I thrive on pushing the boundaries of what AI and web technologies can achieve together.</p>
+                <br>
+                <p>Currently seeking opportunities as an Intern or Developer where I can contribute my skills in AI-driven development and continue growing in the ever-evolving tech landscape.</p>
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-code"></i> Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3><i class="fas fa-brain"></i> Prompt Design</h3>
+                    <p>Crafting effective prompts for AI models to generate optimal outputs and solutions</p>
+                </div>
+                <div class="skill-card">
+                    <h3><i class="fas fa-robot"></i> Generative AI Tools</h3>
+                    <p>Expert use of ChatGPT, Perplexity, and other AI platforms for innovative solutions</p>
+                </div>
+                <div class="skill-card">
+                    <h3><i class="fas fa-laptop-code"></i> Web Development</h3>
+                    <p>Building modern, responsive web applications with clean and efficient code</p>
+                </div>
+                <div class="skill-card">
+                    <h3><i class="fas fa-paint-brush"></i> Front-End Development</h3>
+                    <p>Creating engaging user interfaces with HTML, CSS, JavaScript, and modern frameworks</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATION SECTION -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+            <div class="education-item">
+                <h3>Saurashtra University</h3>
+                <p class="degree">Bachelor's Degree</p>
+                <p class="duration">Currently Pursuing</p>
+            </div>
+        </section>
+
+        <!-- RECENT ACTIVITY SECTION -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-chart-line"></i> Recent Activity & Achievements</h2>
+            <div class="activity-grid">
+                <div class="activity-card">
+                    <span class="activity-type">Feedback & Learning</span>
+                    <h3>AI Session with Shantanu Tungare</h3>
+                    <p>Participated in an insightful AI session led by Shantanu Tungare, gaining valuable knowledge about advanced AI applications and industry best practices. The session provided practical insights into leveraging AI technologies for real-world problem-solving.</p>
+                </div>
+                <div class="activity-card">
+                    <span class="activity-type">Training Feedback</span>
+                    <h3>Generative AI Session by Raghuveer Nishtala</h3>
+                    <p>Engaged in a comprehensive Generative AI training session conducted by Raghuveer Nishtala. The program covered cutting-edge techniques in prompt engineering, AI model optimization, and practical applications of generative AI in modern development workflows.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERESTS SECTION -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-heart"></i> Interests & Following</h2>
+            <div class="interests-grid">
+                <div class="interest-card">
+                    <i class="fas fa-code"></i>
+                    <h3>W3Schools.com</h3>
+                </div>
+                <div class="interest-card">
+                    <i class="fas fa-building"></i>
+                    <h3>Repute Infosystems</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- VOLUNTEERING SECTION -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-hands-helping"></i> Volunteering</h2>
+            <div class="education-item">
+                <h3>Science and Technology</h3>
+                <p>Actively contributing to science and technology initiatives, sharing knowledge and supporting community growth in the tech sector.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2025 Mohit Solanki. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">Prompt Creator | AI Innovator | Web Developer</p>
+    </footer>
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // ===== SCROLL TO TOP FUNCTIONALITY =====
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // ===== SMOOTH SCROLL FOR ALL ANCHOR LINKS =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ===== ANIMATE ELEMENTS ON SCROLL =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // ===== DYNAMIC STAT COUNTER ANIMATION =====
+        const animateCounter = (element, target) => {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 30);
+        };
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumber = entry.target.querySelector('.stat-number');
+                    const targetValue = parseInt(statNumber.textContent);
+                    animateCounter(statNumber, targetValue);
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-item').forEach(stat => {
+            statsObserver.observe(stat);
+        });
+    </script>
+</body>
+</html>
